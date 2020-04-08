@@ -1,6 +1,6 @@
 import React, { useContext, useCallback } from "react";
 import { Layout, Input, Tooltip } from "antd";
-import { QuestionCircleFilled } from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { StoreContext, ACTION_TYPES } from "../stores";
 
 const { Content } = Layout;
@@ -25,9 +25,7 @@ export default function () {
                     placeholder="Search"
                     suffix={
                         <Tooltip title="Search by product">
-                            <QuestionCircleFilled
-                                style={{ fontSize: 24, marginTop: 4 }}
-                            />
+                            <SearchOutlined style={{ fontSize: 24, marginTop: 4 }} />
                         </Tooltip>
                     }
                     onChange={searchChangeHandler}

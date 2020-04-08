@@ -1,12 +1,14 @@
 ## Product listing with ReactJS + LESS + ChartJS + AntD
 
+Checkout the working demo here : https://beverage-list-antd.cyianite.now.sh/
+
 ## Overview
 
 A simple project of product table listing using ReactJS for the UI and DOM manipulations, LESS for CSS styling, ChartJS for the interactive chart and AntD for the material UI framerwork.
 
 ## Getting Started
 
-## Below is the generic implementation of Create React App CLI.
+Below is the generic implementation of Create React App CLI.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
