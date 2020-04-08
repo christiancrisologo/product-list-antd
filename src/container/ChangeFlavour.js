@@ -9,7 +9,7 @@ import MainLayout from "components/MainLayout";
 const { Content } = Layout;
 
 export default function () {
-    const [state, dispatch] = useContext(StoreContext);
+    const [state, dispatch] = useContext(StoreContext); //eslint-disable-line
 
     useEffect(() => {
         dispatch({ type: ACTION_TYPES.LOAD_PRODUCTS });

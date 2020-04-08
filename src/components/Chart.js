@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Chartjs from "chart.js";
 import { toCurrency } from "utils/formatters";
 import { getCannibalizedRevenue, getNetGain } from "utils/formula";
@@ -169,22 +169,13 @@ const getConfig = function (data, selectedProducts) {
 
 const Chart = ({ data, selectedProducts }) => {
     const chartContainer = useRef(null);
-    const [chartInstance, setChartInstance] = useState(null);
 
     useEffect(() => {
         if (chartContainer && chartContainer.current) {
             const chartData = getConfig(data, selectedProducts);
-            const newChartInstance = new Chartjs(chartContainer.current, chartData);
-            setChartInstance(newChartInstance);
+            new Chartjs(chartContainer.current, chartData);
         }
     }, [data, selectedProducts]);
-
-    useEffect(() => {
-        // if (chartContainer && chartContainer.current) {
-        //     const newChartInstance = new Chartjs(chartContainer.current, chartConfig);
-        //     setChartInstance(newChartInstance);
-        // }
-    }, [chartContainer]);
 
     return (
         <div className="chart-container">

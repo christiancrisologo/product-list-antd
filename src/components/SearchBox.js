@@ -6,7 +6,7 @@ import { StoreContext, ACTION_TYPES } from "../stores";
 const { Content } = Layout;
 
 export default function () {
-    const [state, dispatch] = useContext(StoreContext);
+    const [state, dispatch] = useContext(StoreContext); //eslint-disable-line
 
     const searchChangeHandler = useCallback(
         (e) => {

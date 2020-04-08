@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useContext, useCallback, useEffect } from "react";
+import React, { useMemo, useState, useContext, useCallback } from "react";
 import { Table } from "antd";
 import { StoreContext, ACTION_TYPES } from "../stores";
 import Chart from "./Chart";
