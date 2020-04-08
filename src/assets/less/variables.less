@@ -1,0 +1,42 @@
+@import "~antd/dist/antd.less";
+@import "~antd/es/style/themes/default.less";
+
+// Variables
+@primary-color: #1890ff; // primary color for all components
+@link-color: #1890ff; // link color
+@success-color: #52c41a; // success state color
+@warning-color: #faad14; // warning state color
+@error-color: #f5222d; // error state color
+@font-size-base: 14px; // major text font size
+@heading-color: rgba(0, 0, 0, 0.85); // heading text color
+@text-color: rgba(0, 0, 0, 0.65); // major text color
+@text-color-secondary: rgba(0, 0, 0, 0.45); // secondary text color
+@disabled-color: rgba(0, 0, 0, 0.25); // disable state color
+@border-radius-base: 4px; // major border radius
+@border-color-base: #d9d9d9; // major border color
+@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
+@recommended: #58e710;
+@other: #f0b906;
+@caution: #f54c22e1;
+@primary-blue: #1890ff;
+
+// borders
+@border-light: 1px solid @border-color-base;
+
+// media screens
+@screen-xs-min: 480px;
+@screen-sm-min: 768px;
+@screen-md-min: 992px;
+@screen-lg-min: 1200px;
+
+@screen-xs-max: (@screen-sm-min - 1);
+@screen-sm-max: (@screen-md-min - 1);
+@screen-md-max: (@screen-lg-min - 1);
+
+@phone: ~"only screen and (max-width: @{screen-xs-min})";
+@phone-strict: ~"only screen and (min-width: @{screen-xs-min}) and (max-width: @{screen-xs-max})";
+@tablet: ~"only screen and (min-width: @{screen-sm-min})";
+@tablet-strict: ~"only screen and (min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
+@desktop: ~"only screen and (min-width: @{screen-md-min})";
+@desktop-strict: ~"only screen and (min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
+@large: ~"only screen and (min-width: @{screen-lg-min})";

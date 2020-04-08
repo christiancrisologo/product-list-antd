@@ -1,12 +1,12 @@
 import React from "react";
 import "assets/less/app.less";
 import Store from "stores";
-import Layout from "components/Layout";
+import ChangeFlavour from "container/ChangeFlavour";
 
 export default function () {
     return (
         <Store>
-            <Layout />
+            <ChangeFlavour />
         </Store>
     );
 }

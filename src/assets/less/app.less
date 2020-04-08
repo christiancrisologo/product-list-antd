@@ -1,44 +1,7 @@
-@import "~antd/es/style/themes/default.less";
+@import "../css/font-awesome.min.css";
+@import "./variables.less";
 
-// Variables
-@primary-color: #1890ff; // primary color for all components
-@link-color: #1890ff; // link color
-@success-color: #52c41a; // success state color
-@warning-color: #faad14; // warning state color
-@error-color: #f5222d; // error state color
-@font-size-base: 14px; // major text font size
-@heading-color: rgba(0, 0, 0, 0.85); // heading text color
-@text-color: rgba(0, 0, 0, 0.65); // major text color
-@text-color-secondary: rgba(0, 0, 0, 0.45); // secondary text color
-@disabled-color: rgba(0, 0, 0, 0.25); // disable state color
-@border-radius-base: 4px; // major border radius
-@border-color-base: #d9d9d9; // major border color
-@box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
-@recommended: #49c00d;
-@other: #f0b906;
-@caution: #f54c22e1;
-
-// borders
-@border-light: 1px solid @border-color-base;
-
-// media screens
-@screen-xs-min: 480px;
-@screen-sm-min: 768px;
-@screen-md-min: 992px;
-@screen-lg-min: 1200px;
-
-@screen-xs-max: (@screen-sm-min - 1);
-@screen-sm-max: (@screen-md-min - 1);
-@screen-md-max: (@screen-lg-min - 1);
-
-@phone: ~"only screen and (max-width: @{screen-xs-min})";
-@phone-strict: ~"only screen and (min-width: @{screen-xs-min}) and (max-width: @{screen-xs-max})";
-@tablet: ~"only screen and (min-width: @{screen-sm-min})";
-@tablet-strict: ~"only screen and (min-width: @{screen-sm-min}) and (max-width: @{screen-sm-max})";
-@desktop: ~"only screen and (min-width: @{screen-md-min})";
-@desktop-strict: ~"only screen and (min-width: @{screen-md-min}) and (max-width: @{screen-md-max})";
-@large: ~"only screen and (min-width: @{screen-lg-min})";
-
+// customizations
 .site-layout .site-layout-background,
 .ant-layout-content,
 .ant-layout-header,
@@ -53,6 +16,12 @@
     display: flex;
     border-bottom: @border-light;
 }
+.ant-btn-primary {
+    background-color: @primary-blue!important;
+    border-color: @primary-blue!important;
+}
+
+// Product page
 .ant-search-container {
     padding: 24px 48px;
     display: flex;
@@ -114,18 +83,95 @@
     background-color: @caution;
 }
 
-.side-bar-product {
-    border-right: @border-light;
+.product-content {
+    display: flex;
+    flex-direction: row !important;
 }
 
 // product table
-.product-cell {
-    display: flex;
+.product-table {
+    thead > tr > th:first-child {
+        width: 2px;
+    }
+    .selected {
+        background-color: #cae9f3;
+    }
+    .product-cell {
+        display: flex;
+        .product-label-container {
+            display: block;
+            flex: 1;
+        }
+        .product-img {
+            margin-right: 8px;
+            max-width: 22px;
+        }
+        .tool-tip {
+            background-color: #1890ff !important;
+        }
+    }
+
+    .product-row {
+        td:first-child {
+            width: 2px;
+        }
+        &.recommended > td:first-child {
+            border-left: 8px solid @recommended;
+        }
+        &.caution > td:first-child {
+            border-left: 8px solid @caution;
+        }
+        &.other > td:first-child {
+            border-left: 8px solid @other;
+        }
+        .ant-table-row-expand-icon {
+            display: none;
+        }
+    }
 }
-.product-label-container {
-    display: block;
+
+.selected-products {
+    width: 300px !important;
+    border-right: @border-light;
+
+    .selected-products-table {
+        .selected-product-cell {
+            display: flex;
+            flex-direction: row;
+            padding: 4px 12px;
+            .selected-product-field {
+                display: flex;
+                flex-direction: row;
+                .field {
+                    width: 80px;
+                    font-weight: bold;
+                }
+            }
+        }
+        .labels {
+            display: flex;
+            flex-direction: column;
+            margin-left: 12px;
+        }
+    }
 }
-.product-img {
-    padding-right: 8px;
-    max-width: 22px;
+
+.action-buttons {
+    align-items: flex-end;
+    justify-content: center;
+    .buttons {
+        display: flex;
+        width: 40%;
+        button:first-child {
+            margin-right: 12px;
+        }
+    }
+    border-top: @border-light;
+    padding: 0px 48px;
+    height: 80px;
+}
+
+.chart-container {
+    position: relative;
+    width: 92%;
 }

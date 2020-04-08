@@ -1,10 +1,13 @@
 import React, { createContext, useReducer } from "react";
 import rawData from "data";
+import { distinctByField, randomize } from "utils/helpers";
+import { getRevenue } from "utils/formula";
 
 export const ACTION_TYPES = {
     LOAD_PRODUCTS: "LOAD_PRODUCTS",
+    FILTER_BY_PRODUCT_NAME: "FILTER_BY_PRODUCT_NAME",
     GET_PRODUCT_CAPACITY: "GET_PRODUCT_CAPACITY",
-    UPDATE_SELECTED_PRODUCT: "UPDATE_SELECTED_PRODUCT",
+    SELECT_PRODUCT: "SELECT_PRODUCT",
     GET_SELECTED_PRODUCTS: "GET_SELECTED_PRODUCTs",
 };
 
@@ -13,15 +16,29 @@ export const StoreContext = createContext({});
 const initialState = {
     productCapacity: {},
     products: [],
-    selectedProducts: {},
+    selectedProducts: [],
+    filterByProductName: "",
 };
 
+const getProducts = function (data) {
+    return distinctByField(data, "product_code").map((item) => {
+        return {
+            ...item,
+            revenue: getRevenue(item),
+            cols: `${randomize(1, 10)}/10`,
+        };
+    });
+};
 function reducer(state, { type, payload }) {
     switch (type) {
         case ACTION_TYPES.LOAD_PRODUCTS: {
             return {
                 ...state,
-                products: rawData.currentProducts,
+                products: getProducts([...state.products, ...rawData.productUpdateData]),
+                selectedProducts: getProducts([
+                    ...state.selectedProducts,
+                    ...rawData.currentProducts,
+                ]),
             };
         }
         case ACTION_TYPES.GET_PRODUCT_CAPACITY: {
@@ -30,16 +47,22 @@ function reducer(state, { type, payload }) {
                 productCapacity: rawData.productCapacity,
             };
         }
-        case ACTION_TYPES.UPDATE_SELECTED_PRODUCT: {
+        case ACTION_TYPES.SELECT_PRODUCT: {
             return {
                 ...state,
-                selectedProducts: rawData.productUpdateData,
+                products: state.products.filter(
+                    (item) => item.product_code !== payload.product_code
+                ),
+                selectedProducts: distinctByField(
+                    [...state.selectedProducts, payload],
+                    "product_code"
+                ),
             };
         }
-        case ACTION_TYPES.GET_SELECTED_PRODUCTS: {
+        case ACTION_TYPES.FILTER_BY_PRODUCT_NAME: {
             return {
                 ...state,
-                selectedProducts: rawData.productUpdateData,
+                filterByProductName: payload,
             };
         }
         default:
