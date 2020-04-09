@@ -1,6 +1,6 @@
-import React, { createContext, useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import rawData from "data";
-import { distinctByField, randomize } from "utils/helpers";
+import { distinctByField } from "utils/helpers";
 import { getRevenue } from "utils/formula";
 
 export const ACTION_TYPES = {
@@ -11,8 +11,6 @@ export const ACTION_TYPES = {
     GET_SELECTED_PRODUCTS: "GET_SELECTED_PRODUCTs",
 };
 
-export const StoreContext = createContext({});
-
 const initialState = {
     productCapacity: {},
     products: [],
@@ -20,16 +18,18 @@ const initialState = {
     filterByProductName: "",
 };
 
+export const StoreContext = React.createContext(initialState);
+
 const getProducts = function (data) {
     return distinctByField(data, "product_code").map((item) => {
         return {
             ...item,
             revenue: getRevenue(item),
-            cols: `${randomize(1, 10)}/10`,
         };
     });
 };
-function reducer(state, { type, payload }) {
+
+export const reducer = function (state, { type, payload }) {
     switch (type) {
         case ACTION_TYPES.LOAD_PRODUCTS: {
             return {
@@ -68,7 +68,7 @@ function reducer(state, { type, payload }) {
         default:
             return state;
     }
-}
+};
 
 const Store = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -78,5 +78,7 @@ const Store = ({ children }) => {
         </StoreContext.Provider>
     );
 };
+
+export const useStoreContext = () => useContext(StoreContext);
 
 export default Store;

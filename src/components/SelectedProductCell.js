@@ -32,7 +32,7 @@ export default function (props) {
                 <LabelField field="Price:" value={toCurrency(props.price)} />
                 <LabelField field="Vends:" value={props.average_sales || 0} />
                 <LabelField field="Revenue:" value={toCurrency(props.revenue)} />
-                <LabelField field="Cols:" value={props.cols} />
+                <LabelField field="Cols:" value={props.cols || "1/10"} />
             </div>
         </div>
     );

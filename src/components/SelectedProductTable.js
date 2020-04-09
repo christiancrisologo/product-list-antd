@@ -4,7 +4,7 @@ import { StoreContext } from "../stores";
 import SelectedProductCell from "./SelectedProductCell";
 
 export default function () {
-    const [{ selectedProducts }] = useContext(StoreContext);
+    const [{ selectedProducts }, dispatch] = useContext(StoreContext); //eslint-disable-line
 
     const columns = useMemo(
         () => [
